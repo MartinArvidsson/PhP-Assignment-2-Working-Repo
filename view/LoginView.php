@@ -72,5 +72,18 @@ class LoginView {
 	private function getRequestUserName() {
 		//RETURN REQUEST VARIABLE: USERNAME
 	}
+
+	public function GetUsername(){
+		$username = $_POST[self::$name];
+	}
+
+	public function GetPassword(){
+		$password = $_POST[self::$password];
+	}
+
+	private function checkLoginInformation(){
+
+
+	}
 	
 }
