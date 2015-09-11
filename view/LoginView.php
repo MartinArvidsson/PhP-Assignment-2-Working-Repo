@@ -9,8 +9,11 @@ class LoginView {
 	private static $cookiePassword = 'LoginView::CookiePassword';
 	private static $keep = 'LoginView::KeepMeLoggedIn';
 	private static $messageId = 'LoginView::Message';
-
 	
+	private $view;
+	public function __construct(LoginView $view){
+		$this -> view = $view;
+	}
 
 	/**
 	 * Create HTTP response
@@ -68,22 +71,22 @@ class LoginView {
 		';
 	}
 	
+	public function isPosted(){
+		if(isset($_POST[self::$login]))
+		{
+			return true;
+		}
+	}
+	public function getUsername(){
+		return $_POST[self::$name];
+	}
+	public function getPassword(){
+		return $_POST[self::$password];
+	}
 	//CREATE GET-FUNCTIONS TO FETCH REQUEST VARIABLES
 	private function getRequestUserName() {
 		//RETURN REQUEST VARIABLE: USERNAME
+		
+		//Vad ska denna göra? Den är ju privat
 	}
-
-	public function GetUsername(){
-		$username = $_POST[self::$name];
-	}
-
-	public function GetPassword(){
-		$password = $_POST[self::$password];
-	}
-
-	private function checkLoginInformation(){
-
-
-	}
-	
 }
