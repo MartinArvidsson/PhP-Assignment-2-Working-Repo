@@ -10,9 +10,10 @@ class LoginView {
 	private static $keep = 'LoginView::KeepMeLoggedIn';
 	private static $messageId = 'LoginView::Message';
 	
-	private $view;
-	public function __construct(LoginView $view){
-		$this -> view = $view;
+	private $Model;
+	
+	public function __construct(LoginModel $Model){
+		$this -> Model = $Model;
 	}
 
 	/**
@@ -23,8 +24,7 @@ class LoginView {
 	 * @return  void BUT writes to standard output and cookies!
 	 */
 	public function response() {
-		$message = '';
-		
+		$message = $this->Model->GetMessage();
 		$response = $this->generateLoginFormHTML($message);
 		//$response .= $this->generateLogoutButtonHTML($message);
 		return $response;

@@ -7,26 +7,35 @@ private static $CorrectPassword = "Password";
 public $UserUserName = "";
 public $UserPassword = "";
 
-public $LoginMessage ="";
+private $LoginMessage;
     
     public function GetUserInformation($_UserPassword,$_UserUsername){
-        $this->$UserPassword = $_UserPassword;
-        $this->$UserUserName = $_UserUsername;
+        $this->UserPassword = $_UserPassword;
+        $this->UserUserName = $_UserUsername;
+        
+        CheckInformation();
     }
     
     public function CheckInformation(){
      
-     if($this->$UserUserName == $this->$CorrectUsername && $this->$UserPassword == $this->$CorrectPassword){
-         $LoginMessage = "Welcome";
+     if($this->UserUserName === Self::CorrectUsername && $this->UserPassword === Self::CorrectPassword){
+         $this->LoginMessage = "Welcome";
      }
-     elseif($this->$UserUserName != $this->$CorrectUsername){
-          $LoginMessage = "Wrong Username";
+     elseif($this->UserUserName !== Self::CorrectUsername){
+          $this->LoginMessage = "Wrong Username";
      }
-     elseif($this->$UserPassword != $this->$CorrectPassword){
-          $LoginMessage = "Wong Password";
+     elseif($this->UserPassword !== Self::CorrectPassword){
+          $this->LoginMessage = "Wong Password";
      }
      else{
-         $LoginMessage ="Wrong Username and Password";
+         $this->LoginMessage ="Wrong Username and Password";
      }
+    }
+    
+    public function getMessage(){
+        
+        var_dump($this->LoginMessage);
+        return $this->LoginMessage;
+        
     }
 }
