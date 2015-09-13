@@ -2,16 +2,17 @@
 
 class LoginModel{
 
-private static $CorrectUsername = "Admin";
+private static $CorrectUsername = "Admin"; //The Correct information needed to be able to login
 private static $CorrectPassword = "Password";
-private $UserUserName;
+private $UserUserName; //The user inputs will go here
 private $UserPassword;
-private $IsUserLoggedIn;
+
+//private $IsUserLoggedIn; Wip code
 
 private $LoginMessage;
     
     public function CheckLogin($_UserPassword,$_UserUsername){
-        $this->IsUserLoggedIn = false;
+        //$this->IsUserLoggedIn = false;
         $this->UserPassword = $_UserPassword;
         $this->UserUserName = $_UserUsername;
         
