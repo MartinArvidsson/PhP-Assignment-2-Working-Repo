@@ -13,12 +13,10 @@ class LoginController{
     //Om ngt är postat, hämta username / password , jämför mot dom statiska i LoginModel, Om dom matchar gå vidare och låt användaren logga in, annars neka dom och rensa fälten.. presentera 
     //meddelande i $message i LoginView.
     
-
-    
     public function checkLogin(){
-        if($view->isPosted){
+        if($this->view->isPosted()){
             
-            $Model->GetUserInformation($this->view->getPassword(),$this->view->getUsername());
+            $this->Model->CheckLogin($this->view->getPassword(),$this->view->getUsername());
         }
     }
 }

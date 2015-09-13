@@ -4,38 +4,33 @@ class LoginModel{
 
 private static $CorrectUsername = "Admin";
 private static $CorrectPassword = "Password";
-public $UserUserName = "";
-public $UserPassword = "";
+private $UserUserName;
+private $UserPassword;
+private $IsUserLoggedIn;
 
 private $LoginMessage;
     
-    public function GetUserInformation($_UserPassword,$_UserUsername){
+    public function CheckLogin($_UserPassword,$_UserUsername){
+        $this->IsUserLoggedIn = false;
         $this->UserPassword = $_UserPassword;
         $this->UserUserName = $_UserUsername;
         
-        CheckInformation();
+        if($this->UserUserName === Self::$CorrectUsername && $this->UserPassword === Self::$CorrectPassword){
+             $this->LoginMessage = "Welcome";
+        }
+        elseif($this->UserUserName !== Self::$CorrectUsername){
+             $this->LoginMessage = "Wrong Username";
+        }
+        elseif($this->UserPassword !== Self::$CorrectPassword){
+             $this->LoginMessage = "Wong Password";
+        }
+        else{
+            $this->LoginMessage ="Wrong Username and Password";
+        }
     }
     
-    public function CheckInformation(){
-     
-     if($this->UserUserName === Self::CorrectUsername && $this->UserPassword === Self::CorrectPassword){
-         $this->LoginMessage = "Welcome";
-     }
-     elseif($this->UserUserName !== Self::CorrectUsername){
-          $this->LoginMessage = "Wrong Username";
-     }
-     elseif($this->UserPassword !== Self::CorrectPassword){
-          $this->LoginMessage = "Wong Password";
-     }
-     else{
-         $this->LoginMessage ="Wrong Username and Password";
-     }
-    }
     
     public function getMessage(){
-        
-        var_dump($this->LoginMessage);
         return $this->LoginMessage;
-        
     }
 }
