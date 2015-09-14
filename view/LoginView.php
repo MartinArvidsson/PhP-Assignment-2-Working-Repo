@@ -11,6 +11,7 @@ class LoginView {
 	private static $messageId = 'LoginView::Message';
 	
 	private $Model;
+	private static $PreviousUsername = '';
 	
 	public function __construct(LoginModel $Model){
 		$this -> Model = $Model;
@@ -65,7 +66,7 @@ class LoginView {
 					<p id="' . self::$messageId . '">' . $message . '</p>
 					
 					<label for="' . self::$name . '">Username :</label>
-					<input type="text" id="' . self::$name . '" name="' . self::$name . '" value="" />
+					<input type="text" id="' . self::$name . '" name="' . self::$name . '" value="' . self::$PreviousUsername . '" />
 
 					<label for="' . self::$password . '">Password :</label>
 					<input type="password" id="' . self::$password . '" name="' . self::$password . '" />
@@ -82,6 +83,7 @@ class LoginView {
 	public function isPosted(){
 		if(isset($_POST[self::$login]))
 		{
+			self::$PreviousUsername = $_POST[self::$name];
 			return true;
 		}
 	}

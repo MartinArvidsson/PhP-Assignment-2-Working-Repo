@@ -21,16 +21,16 @@ private $LoginMessage;
              $this->IsUserLoggedIn = true;
         }
         elseif($this->UserUserName === ''){
-            $this->LoginMessage = "Missing Username";    
+            $this->LoginMessage = "Username is missing";    
         }
         elseif($this->UserUserName !== '' && $this->UserPassword === ''){
-            $this->LoginMessage = "Missing Password";
+            $this->LoginMessage = "Password is missing";
         }
         elseif($this->UserUserName !== Self::$CorrectUsername){
-             $this->LoginMessage = "Wrong Username or Password";
+             $this->LoginMessage = "Wrong name or password";
         }
         elseif($this->UserPassword !== Self::$CorrectPassword){
-             $this->LoginMessage = "Wrong Username or Password";
+             $this->LoginMessage = "Wrong name or password";
         }
     }
     

@@ -21,6 +21,6 @@ $lc = new LoginController($v,$lm);
 $lc->checkLogin();
 
 $loggedinbool = $lc->checkLoginStatus();
-var_dump($loggedinbool);
+
 $lv->render($loggedinbool, $v, $dtv);
 
