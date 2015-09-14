@@ -19,4 +19,8 @@ class LoginController{
             $this->Model->CheckLogin($this->view->getPassword(),$this->view->getUsername());
         }
     }
+    
+    public function checkLoginStatus(){
+       return $this->Model->isUserloggedIn();
+    }
 }

@@ -25,8 +25,16 @@ class LoginView {
 	 */
 	public function response() {
 		$message = $this->Model->GetMessage();
-		$response = $this->generateLoginFormHTML($message);
-		//$response .= $this->generateLogoutButtonHTML($message);
+		$response = "";
+		
+		if($this->Model->isUserloggedIn())
+		{
+			$response .= $this->generateLogoutButtonHTML($message);
+		}
+		else
+		{
+		   	$response = $this->generateLoginFormHTML($message);
+		}
 		return $response;
 	}
 
