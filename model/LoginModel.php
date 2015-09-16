@@ -6,21 +6,29 @@ private static $CorrectUsername = "Admin"; //The Correct information needed to b
 private static $CorrectPassword = "Password";
 private $UserUserName; //The user inputs will go here
 private $UserPassword;
-
 private $IsUserLoggedIn;
-
 private $LoginMessage;
+    
+    public function __construct(){
+	 if(!isset($_SESSION['USERLOGGEDIN']))
+             {
+                 $_SESSION['USERLOGGEDIN'] = false;
+             }	
+	}
     
     public function CheckLogin($_UserPassword,$_UserUsername)
     {
-        $this->IsUserLoggedIn = false;
         $this->UserPassword = $_UserPassword;
         $this->UserUserName = $_UserUsername;
-        
+       
         if($this->UserUserName == Self::$CorrectUsername && $this->UserPassword == Self::$CorrectPassword)
         {
+            if($_SESSION['USERLOGGEDIN'] == false)
+            {
              $this->LoginMessage = "Welcome";
-             $this->IsUserLoggedIn = true;
+            }
+             
+             $_SESSION['USERLOGGEDIN'] = true;
         }
         elseif($this->UserUserName == '')
         {
@@ -44,22 +52,23 @@ private $LoginMessage;
         return $this->LoginMessage;
     }
     
-    public function isUserloggedIn()
-    {
-        if($this->IsUserLoggedIn == true)
-        {
-        return $this->IsUserLoggedIn;
-        }
-        else
-        {
-            //Man har inte loggat in, då ska IsUserLoggedIn inte retuneras
-        }
-    }
-    
     public function UserWantsToLogout()
     {
         //Ta bort session, rensa cookies etc.
-        $this->LoginMessage = "Bye bye!";
+        if($_SESSION['USERLOGGEDIN'] == true)
+        {
+            $this->LoginMessage = "Bye bye!";
+        }
+        unset($_SESSION['USERLOGGEDIN']);
+        session_destroy();
         return $this->LoginMessage;
+    }
+    
+    public function Issessionset()
+    {
+        if(isset($_SESSION['USERLOGGEDIN']))
+        {
+            return $_SESSION['USERLOGGEDIN'];
+        }
     }
 }

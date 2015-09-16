@@ -24,9 +24,4 @@ class LoginController{
         }
         
     }
-    
-    public function checkLoginStatus(){
-       return $this->Model->isUserloggedIn();
-    }
-    
 }

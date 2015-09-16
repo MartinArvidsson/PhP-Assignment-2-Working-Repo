@@ -11,7 +11,6 @@ class LoginView {
 	private static $messageId = 'LoginView::Message';
 	
 	private $Model;
-	private static $PreviousUsername = '';
 	private $message;
 	
 	public function __construct(LoginModel $Model){
@@ -29,7 +28,7 @@ class LoginView {
 		$message = $this->Model->GetMessage();
 		$response = "";
 		
-		if($this->Model->isUserloggedIn())
+		if($this->Model->Issessionset())
 		{
 			$response .= $this->generateLogoutButtonHTML($message);
 		}
@@ -92,6 +91,7 @@ class LoginView {
 		if(isset($_POST[self::$logout]))
 		{
 			return true;
+			
 		}
 		return false;
 	}
@@ -115,9 +115,9 @@ class LoginView {
 	public function getPassword(){
 		return $_POST[self::$password];
 	}
-	//CREATE GET-FUNCTIONS TO FETCH REQUEST VARIABLES
+/*	//CREATE GET-FUNCTIONS TO FETCH REQUEST VARIABLES
 	private function getRequestUserName() {
 		//RETURN REQUEST VARIABLE: USERNAME
 		//Vad ska denna göra? Den är ju privat
-	}
+	}*/
 }
