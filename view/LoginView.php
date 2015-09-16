@@ -12,6 +12,7 @@ class LoginView {
 	
 	private $Model;
 	private static $PreviousUsername = '';
+	private $message;
 	
 	public function __construct(LoginModel $Model){
 		$this -> Model = $Model;
@@ -66,7 +67,7 @@ class LoginView {
 					<p id="' . self::$messageId . '">' . $message . '</p>
 					
 					<label for="' . self::$name . '">Username :</label>
-					<input type="text" id="' . self::$name . '" name="' . self::$name . '" value="' . self::$PreviousUsername . '" />
+					<input type="text" id="' . self::$name . '" name="' . self::$name . '" value="' . $this->getUsername() . '" />
 
 					<label for="' . self::$password . '">Password :</label>
 					<input type="password" id="' . self::$password . '" name="' . self::$password . '" />
@@ -80,15 +81,36 @@ class LoginView {
 		';
 	}
 	
-	public function isPosted(){
+	public function doesUserWantToLogin(){
 		if(isset($_POST[self::$login]))
 		{
-			self::$PreviousUsername = $_POST[self::$name];
 			return true;
 		}
+		return false;
 	}
+	public function doesUserWantToLogout(){
+		if(isset($_POST[self::$logout]))
+		{
+			return true;
+		}
+		return false;
+	}
+/*	public function isLoggedOut(){
+		if(isset($_POST[self::$logout]))
+		{
+			$message = "Bye Bye!";
+			$this->generateLoginFormHTML($message);
+		}
+	} */	
 	public function getUsername(){
-		return $_POST[self::$name];
+		if(isset($_POST[self::$name]))
+		{
+			return $_POST[self::$name];
+		}
+		else
+		{
+			return null;
+		}
 	}
 	public function getPassword(){
 		return $_POST[self::$password];
@@ -96,7 +118,6 @@ class LoginView {
 	//CREATE GET-FUNCTIONS TO FETCH REQUEST VARIABLES
 	private function getRequestUserName() {
 		//RETURN REQUEST VARIABLE: USERNAME
-		
 		//Vad ska denna göra? Den är ju privat
 	}
 }

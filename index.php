@@ -20,7 +20,11 @@ $lc = new LoginController($v,$lm);
 
 $lc->checkLogin();
 
+//$html = $lc->getHtmlResponse();
 $loggedinbool = $lc->checkLoginStatus();
 
-$lv->render($loggedinbool, $v, $dtv);
+$html = $v->response();
 
+$lv->render($loggedinbool, $html, $dtv);
+
+//$lv->render($loggedinbool, $html, $dtv);

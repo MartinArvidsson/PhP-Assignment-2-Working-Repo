@@ -14,13 +14,19 @@ class LoginController{
     //meddelande i $message i LoginView.
     
     public function checkLogin(){
-        if($this->view->isPosted()){
-            
+        if($this->view->doesUserWantToLogout())
+        { //Är man inloggad
+            $this->Model->UserWantsToLogout();
+        }
+        else if($this->view->doesUserWantToLogin())
+        { //Försöker logga in
             $this->Model->CheckLogin($this->view->getPassword(),$this->view->getUsername());
         }
+        
     }
     
     public function checkLoginStatus(){
        return $this->Model->isUserloggedIn();
     }
+    
 }
