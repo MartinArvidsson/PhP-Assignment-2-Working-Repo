@@ -12,15 +12,15 @@ ini_set('display_errors', 'On');
 
 //CREATE OBJECTS OF THE VIEWS
 
-$dtv = new DateTimeView();
-$lv = new LayoutView();
-$lm = new LoginModel();
-$v = new LoginView($lm);
-$lc = new LoginController($v,$lm);
+$dtv = new DateTimeView(); //Ny datetimeview
+$lv = new LayoutView(); //Ny layoutview
+$lm = new LoginModel(); // Ny loginmodel
+$v = new LoginView($lm); //Ny loginview med en instans av LoginModel
+$lc = new LoginController($v,$lm); // Ny logincontroller med instanser av Loginview samt LoginModell
 
-$lc->checkLogin();
+$lc->checkLogin(); //Startar checkLogin
 
 
-$html = $v->response();
+$html = $v->response(); 
 
 $lv->render($lm->Issessionset(), $html, $dtv);
