@@ -21,7 +21,7 @@ private $LoginMessage;
         $this->UserPassword = $_UserPassword;
         $this->UserUserName = $_UserUsername;
        
-        if($this->UserUserName == Self::$CorrectUsername && $this->UserPassword == Self::$CorrectPassword)
+        if($this->UserUserName == self::$CorrectUsername && $this->UserPassword == self::$CorrectPassword)
         {
             if($_SESSION['USERLOGGEDIN'] == false)
             {
@@ -37,11 +37,11 @@ private $LoginMessage;
         elseif($this->UserUserName != '' && $this->UserPassword === ''){
             $this->LoginMessage = "Password is missing";
         }
-        elseif($this->UserUserName != Self::$CorrectUsername)
+        elseif($this->UserUserName != self::$CorrectUsername)
         {
              $this->LoginMessage = "Wrong name or password";
         }
-        elseif($this->UserPassword != Self::$CorrectPassword)
+        elseif($this->UserPassword != self::$CorrectPassword)
         {
              $this->LoginMessage = "Wrong name or password";
         }
