@@ -25,7 +25,7 @@ class LoginView {
 	 * @return  void BUT writes to standard output and cookies!
 	 */
 	public function response() {
-		$message = $this->Model->GetMessage();
+		$message = $this->Model->GetMessage(); //Beroende på vad meddelandet säger visas antingen logout eller login
 		$response = "";
 		
 		if($this->Model->Issessionset())
@@ -44,7 +44,7 @@ class LoginView {
 	* @param $message, String output message
 	* @return  void, BUT writes to standard output!
 	*/
-	private function generateLogoutButtonHTML($message) {
+	private function generateLogoutButtonHTML($message) { //Koden för Logout formuläret.
 		return '
 			<form  method="post" >
 				<p id="' . self::$messageId . '">' . $message .'</p>
@@ -58,7 +58,7 @@ class LoginView {
 	* @param $message, String output message
 	* @return  void, BUT writes to standard output!
 	*/
-	private function generateLoginFormHTML($message) {
+	private function generateLoginFormHTML($message) { //Koden för login formuläret
 		return '
 			<form method="post" > 
 				<fieldset>
@@ -80,14 +80,14 @@ class LoginView {
 		';
 	}
 	
-	public function doesUserWantToLogin(){
+	public function doesUserWantToLogin(){ //Kollar om login  är tryckt eller ej för login
 		if(isset($_POST[self::$login]))
 		{
 			return true;
 		}
 		return false;
 	}
-	public function doesUserWantToLogout(){
+	public function doesUserWantToLogout(){ //Kollar om login  är tryckt eller ej för logout 
 		if(isset($_POST[self::$logout]))
 		{
 			return true;
@@ -95,14 +95,8 @@ class LoginView {
 		}
 		return false;
 	}
-/*	public function isLoggedOut(){
-		if(isset($_POST[self::$logout]))
-		{
-			$message = "Bye Bye!";
-			$this->generateLoginFormHTML($message);
-		}
-	} */	
-	public function getUsername(){
+	
+	public function getUsername(){ //Hämtar ut användarnamn
 		if(isset($_POST[self::$name]))
 		{
 			return $_POST[self::$name];
@@ -112,12 +106,8 @@ class LoginView {
 			return null;
 		}
 	}
-	public function getPassword(){
+	public function getPassword(){ //Hämtar ut lösenord
 		return $_POST[self::$password];
 	}
-/*	//CREATE GET-FUNCTIONS TO FETCH REQUEST VARIABLES
-	private function getRequestUserName() {
-		//RETURN REQUEST VARIABLE: USERNAME
-		//Vad ska denna göra? Den är ju privat
-	}*/
+
 }

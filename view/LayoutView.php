@@ -3,7 +3,7 @@
 
 class LayoutView {
   
-  public function render($isLoggedIn, $response, DateTimeView $dtv) {
+  public function render($isLoggedIn, $response, DateTimeView $dtv) { //Skickar in Sessionen, beroende om den finns eller inte skrivs Logged in eller Not Logged in ut.
     echo '<!DOCTYPE html>
       <html>
         <head>

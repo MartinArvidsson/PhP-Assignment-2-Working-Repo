@@ -5,15 +5,12 @@ class LoginController{
     private $view;
     private $Model;
     
-    public function __construct(LoginView $view,LoginModel $Model){
+    public function __construct(LoginView $view,LoginModel $Model){ //Skapar 2 instanser av Model och View
       $this -> view = $view;
       $this -> Model = $Model;
     }
     
-    //Om ngt är postat, hämta username / password , jämför mot dom statiska i LoginModel, Om dom matchar gå vidare och låt användaren logga in, annars neka dom och rensa fälten.. presentera 
-    //meddelande i $message i LoginView.
-    
-    public function checkLogin(){
+    public function checkLogin(){ //Kollar om man vill logga in eller ut beroende på vad funktionerna i LoginView säger rad 83-97
         if($this->view->doesUserWantToLogout())
         { //Är man inloggad
             $this->Model->UserWantsToLogout();

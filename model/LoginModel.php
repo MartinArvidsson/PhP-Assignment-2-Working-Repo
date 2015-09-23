@@ -9,14 +9,14 @@ private $UserPassword;
 private $IsUserLoggedIn;
 private $LoginMessage;
     
-    public function __construct(){
+    public function __construct(){ //Skapar session och sätter till false
 	 if(!isset($_SESSION['USERLOGGEDIN']))
              {
                  $_SESSION['USERLOGGEDIN'] = false;
              }	
 	}
     
-    public function CheckLogin($_UserPassword,$_UserUsername)
+    public function CheckLogin($_UserPassword,$_UserUsername) //Kollar logininformationen, och beroende om den matchar eller inte händer olika scenarion
     {
         $this->UserPassword = $_UserPassword;
         $this->UserUserName = $_UserUsername;
@@ -47,12 +47,12 @@ private $LoginMessage;
         }
     }
     
-    public function getMessage()
+    public function getMessage() //Retunerar LoginMessage till LoginView för att den ska presenteras
     {
         return $this->LoginMessage;
     }
     
-    public function UserWantsToLogout()
+    public function UserWantsToLogout() //Tar bort session och fixar meddelande om man loggar ut.
     {
         //Ta bort session, rensa cookies etc.
         if($_SESSION['USERLOGGEDIN'] == true)
@@ -64,7 +64,7 @@ private $LoginMessage;
         return $this->LoginMessage;
     }
     
-    public function Issessionset()
+    public function Issessionset() //Retunerar sessionen för Layoutview.
     {
         if(isset($_SESSION['USERLOGGEDIN']))
         {
